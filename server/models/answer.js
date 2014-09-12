@@ -26,19 +26,24 @@ Answer.findByFormId = function(id, cb){
 Answer.prototype.syncScore = function(){
   //first make an array of avg respnonses
   //then make array of arrays of syncScores
-  var numQs = this.responses[0].length;
-  var numUsers = this.responses.length;
-  var avgVals = [];
-  var sum = 0;
+  var numQs    = this.responses[0].length,
+      numUsers = this.responses.length,
+      avgVals  = [],
+      sum      = 0;
 
   for(var i = 0; i < numQs; i++){
-    this.responses.forEach(function(user){
-      sum += user[i].value;
-    });
-      avgVals.push(sum/numUsers);
-      sum = 0;
+    //this.responses.forEach(function(user){
+      //sum += user[i].value;
+    //});
+    this.responses.forEach(addSum);
+    avgVals.push(sum/numUsers);
+    sum = 0;
   }
 
+  function addSum(user){
+    sum += user[i].value;
+  }
+  //
   //now we have array of avg VAls
   //console.log(avgVals);
 
