@@ -26,7 +26,36 @@ Answer.findByFormId = function(id, cb){
 Answer.prototype.syncScore = function(){
   //first make an array of avg respnonses
   //then make array of arrays of syncScores
-  //var numQs =
+  var numQs = this.responses[0].length;
+  var numUsers = this.responses.length;
+  var avgVals = [];
+  var sum = 0;
+
+  for(var i = 0; i < numQs; i++){
+    this.responses.forEach(function(user){
+      sum += user[i].value;
+    });
+      avgVals.push(sum/numUsers);
+      sum = 0;
+  }
+
+  //now we have array of avg VAls
+  //console.log(avgVals);
+
+  var syncScores = this.responses.map(function(user){
+    user = user.map(function(q){
+      //console.log(q.prediction);
+      //console.log(_.indexOf(user, q));
+      //console.log(avgVals[_.indexOf(q, user)]);
+      q = (q.prediction - avgVals[_.indexOf(user, q)]);
+      return q;
+    });
+    return user;
+  });
+
+  console.log(syncScores);
+  return syncScores;
+
 };
 
 
