@@ -1,17 +1,18 @@
 {
-  "name": "mean-template",
+  "name": "collectivist-angular",
   "version": "0.0.0",
-  "description": "The MEAN Template",
+  "description": "unique survey taking app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nss-cohort-2014-06-07/mean-template"
+    "url": "https://github.com/dsroden/collectivist-angular"
   },
-  "author": "Chyld Medford <chyld.medford@gmail.com>",
+  "author": "DSRoden<daniel.s.roden@gmail.com>",
+  "contributors": "Nathan Vasquez, Mikey Badr, Mark Supalla, Juan Rodriguez, Matt Keef",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nss-cohort-2014-06-07/mean-template/issues"
+    "url": "https://github.com/dsroden/collectivist-angular/issues"
   },
-  "homepage": "https://github.com/nss-cohort-2014-06-07/mean-template",
+  "homepage": "https://github.com/dsroden/collectivist-angular",
   "dependencies": {
     "async": "^0.9.0",
     "bcrypt": "^0.8.0",
