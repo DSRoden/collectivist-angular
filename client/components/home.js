@@ -1,14 +1,17 @@
 (function(){
   'use strict';
 
-  angular.module('mean-template')
+  angular.module('collectivist')
   .factory('Home', ['$http', function($http){
 
-    function getMessage(){
+    function getForms(){
       return $http.get('/home');
     }
 
-    return {getMessage:getMessage};
+    function getForm(id){
+      return $http.post('/form', {id:id});
+    }
+    return {getForms:getForms, getForm:getForm};
   }]);
 })();
 
