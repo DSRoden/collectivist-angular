@@ -1,15 +1,24 @@
 (function(){
   'use strict';
 
-  angular.module('mean-template')
-  .controller('HomeCtrl', ['$scope', '$interval', 'Home', function($scope, $interval, Home){
-    Home.getMessage().then(function(response){
-      $scope.mean = response.data.mean;
+  angular.module('collectivist')
+  .controller('HomeCtrl', ['$scope', 'Home', function($scope, Home){
+    $scope.forms = [];
 
-      $interval(function(){
-        $scope.mean = _.shuffle($scope.mean);
-      }, 500);
+    Home.getForms().then(function(response){
+      $scope.forms = response.data.forms;
     });
+
+    $scope.loadForm = function(id){
+      console.log(id);
+      $scope.hideForms = !!!$scope.hideForms;
+      Home.getForm(id).then(function(response){
+        $scope.form = response.data.form;
+        $scope.questions = response.data.questions;
+      });
+
+      $scope.showForm = !!!$scope.showForm;
+    };
   }]);
 })();
 

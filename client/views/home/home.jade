@@ -1,4 +1,26 @@
-h3 The MEAN Stack
-ul(ng-show='mean')
-  li(ng-repeat='technology in mean') {{technology}}
+
+
+h3(ng-hide='hideForms')  Today's Forms
+  ul(ng-show='forms')
+    li(ng-repeat='form in forms') {{form.title}}
+      button.btn.btn-success(ng-click='loadForm(form._id)') Take Survey
+
+h3(ng-show='showForm')
+  ul(ng-show='forms')
+    li(ng-repeat='question in questions') {{question.content}}
+      h5#valueradios Rate your opinion from 1 to 5, 1 being strongly disaggree and two being strongly agree
+        input(type='radio', ng-model='qvalue', name='value', value=1)
+        input(type='radio', name='value', value=2)
+        input(type='radio', name='value', value=3)
+        input(type='radio', name='value', value=4)
+        input(type='radio', name='value', value=5)
+      h5#valueradios Predict an average opinion for the whole group for this question, again from 1 to 5
+        input(type='radio', name='prediction', value=1)
+        input(type='radio', name='prediction', value=2)
+        input(type='radio', name='prediction', value=3)
+        input(type='radio', name='prediction', value=4)
+        input(type='radio', name='prediction', value=5)
+  button.btn.btn-success(ng-click='calculateResults()') Take Survey
+
+
 

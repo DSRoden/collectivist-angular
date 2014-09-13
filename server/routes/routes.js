@@ -19,6 +19,7 @@ module.exports = function(app, express){
   app.use(debug.info);
 
   app.get('/home', home.index);
+  app.post('/form', home.form);
 
   console.log('Express: Routes Loaded');
 };
