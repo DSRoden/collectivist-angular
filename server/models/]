@@ -1,0 +1,34 @@
+(function(){
+  'use strict';
+
+  angular.module('collectivist')
+  .controller('MakeFormCtrl', ['$scope', 'MakeForm', function($scope, MakeForm){
+    $scope.question = {};
+    $scope.questions = [];
+    $scope.form = {};
+    $scope.qIds = [];
+
+    MakeForm.all().then(function(response){
+      $scope.questions = response.data.questions;
+    });
+
+    $scope.addQuestion = function(){
+      MakeForm.create($scope.question).then(function(response){
+        $scope.qIds.push(response.data.question._id);
+        $scope.questions.push($scope.question);
+        $scope.question = {};
+      });
+    };
+
+    $scope.addForm = function(){
+      $scope.form.qIds = $scope.questions.map(function(q){
+        return q._id;
+      });
+      MakeForm.addForm($scope.form).then(function(response){
+        $scope.form = {};
+      });
+    };
+
+  }]);
+})();
+

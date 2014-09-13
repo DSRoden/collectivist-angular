@@ -1,0 +1,29 @@
+h3 Make New Form
+
+.row
+  .col-xs-3
+    h2 Start building your form!
+    form(novalidate, name='makeNewForm', role='form')
+      .form-group
+        label(for='title') Form Title
+        input.form-control#title(name='title', type='text', ng-model='form.title', required, ng-minlength='2', autofocus)
+      .form-group
+        label(for='picture') Picture
+        input.form-control#picture(name='picture', type='text', ng-model='form.picture', required, ng-minlength='7', autofocus)
+      .form-group
+        button.btn.btn-success(ng-show='makeNewForm.$valid', ng-click='addForm()') Now add questions!
+  .col-xs-3
+    h2 
+    form(novalidate, name='makeNewQuestion', role='form')
+      .form-group
+        label(for='category') Category
+        input.form-control#category(name='category', type='text', ng-model='question.category', required, ng-minlength='2', autofocus)
+      .form-group
+        label(for='question') Question:
+        input.form-control#question(name='question', type='text', ng-model='question.content', required, ng-minlength='7', autofocus)
+      .form-group
+        button.btn.btn-success(ng-show='makeNewQuestion.$valid', ng-click='addQuestion()') Add Question
+  .col-xs-3
+    pre {{question | json}}
+    pre {{questions | json}}
+    pre {{forms | json}}

@@ -11,6 +11,9 @@ Object.defineProperty(Question, 'collection', {
   get: function(){return global.mongodb.collection('questions');}
 });
 
+Question.create = function(question, cb){
+  Question.collection.save(question, cb);
+};
 
 Question.all = function(cb){
   Question.collection.find().toArray(cb);
