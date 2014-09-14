@@ -16,6 +16,7 @@
     });
 
     $scope.addQuestion = function(){
+      $scope.question.formId = $scope.formId;
       MakeForm.create($scope.question).then(function(response){
         $scope.questions.push($scope.question);
         $scope.question = {};
@@ -23,8 +24,9 @@
     };
 
     $scope.addForm = function(){
-      $scope.form.qIds = [];
+      $scope.form.questions = [];
       MakeForm.addForm($scope.form).then(function(response){
+        $scope.formId = response.data.form._id;
         $scope.form = {};
       });
     };

@@ -12,8 +12,15 @@ Object.defineProperty(Question, 'collection', {
 });
 
 Question.create = function(question, cb){
-  Question.collection.save(question, cb);
+  Question.collection.save(question,function(err, question){
+    require('./form').findById(question.formId, function(err, form){
+      form.questions.push(question._id);
+      require('./form').collection.update({_id:form._id},{$set:{questions:form.questions}}, cb);
+    });
+  });
 };
+
+
 
 Question.all = function(cb){
   Question.collection.find().toArray(cb);
@@ -32,11 +39,14 @@ Question.findFormQuestions = function(arrayOfQuestions, cb){
 };
 
 
+
+module.exports = Question;
+
+
+
 function iterator(question, cb){
   Question.collection.findOne({_id:question}, function(err, question){
     cb(null, question);
   });
 }
-
-module.exports = Question;
 
