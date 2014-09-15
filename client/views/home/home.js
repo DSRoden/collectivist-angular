@@ -45,10 +45,12 @@
 
     $scope.submitResponses = function(){
       Home.submit($scope.responses, $scope.form._id).then(function(response){
-        debugger;
+        $scope.formCompleted = false;
+        $scope.results = response.data.results[0];
+        $scope.avg     = response.data.results[1];
+        $scope.syncScore = true;
       });
     };
-    //Home.submitForm(responses, formid)
 
 
   }]);

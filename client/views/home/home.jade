@@ -34,3 +34,16 @@ h3(ng-hide='hideForms')  Today's Forms
 #done(ng-show='formCompleted')
   h1 You've completed the survey!
   button.btn.btn-success(ng-click='submitResponses()') Submit Results
+
+#syncScoreTable(ng-show='syncScore')
+  h1 Sync Scores!
+  table.table
+    thead
+      tr
+        th
+        th(ng-repeat='a in avg') Q{{$index+1}} {{a}}
+    tbody
+      tr(ng-repeat='r in results', ng-class='{last: $last}')
+        td U{{$index+1}}
+        td(ng-repeat='q in results[$index] track by $index', ng-class='{buddha: q > -1 && q < 1, bozo: q > 1 && q < 4}') {{q}}
+

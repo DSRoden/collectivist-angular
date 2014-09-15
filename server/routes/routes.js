@@ -8,6 +8,7 @@ var morgan         = require('morgan'),
     debug          = require('../lib/debug'),
     questions      = require('../controllers/questions'),
     forms          = require('../controllers/forms'),
+    results        = require('../controllers/results'),
     home           = require('../controllers/home');
 
 module.exports = function(app, express){
@@ -26,6 +27,7 @@ module.exports = function(app, express){
   app.get('/questions', questions.all);
   app.post('/forms', forms.create);
   app.get('/forms', forms.all);
+  app.post('/results', results.addResponse);
 
   console.log('Express: Routes Loaded');
 };

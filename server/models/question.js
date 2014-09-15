@@ -28,8 +28,8 @@ Question.all = function(cb){
 
 Question.findById = function(id,cb){
   console.log(id);
-  var _id = Mongo.ObjectID(id.id);
-  Question.collection.find({_id:_id}, function(err, obj){
+  var _id = Mongo.ObjectID(id);
+  Question.collection.findOne({_id:_id}, function(err, obj){
     cb(err, obj);
   });
 };
