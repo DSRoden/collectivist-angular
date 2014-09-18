@@ -41,7 +41,7 @@ h3(ng-hide='hideForms')  Today's Forms
     thead
       tr
         th
-        th(ng-repeat='a in avg') Q{{$index+1}} {{a}}
+        th(ng-repeat='a in avg track by $index') Q{{$index+1}} {{a}}
     tbody
       tr(ng-repeat='r in results', ng-class='{last: $last}')
         td U{{$index+1}}
